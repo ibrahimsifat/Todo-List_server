@@ -2,6 +2,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const todosHandler = require("./routes/product");
+const cors = require("cors");
 //internal import
 const {
   notFoundHandler,
@@ -15,6 +16,12 @@ const app = express();
 // dotenv config
 require("dotenv").config();
 
+// CORS configuration
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true,
+};
+app.use(cors(corsOptions));
 //set static path
 // app.use(express.static(path.join(__dirname, "public")));
 
