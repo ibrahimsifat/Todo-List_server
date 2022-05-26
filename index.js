@@ -1,8 +1,10 @@
 //external import
 const express = require("express");
 const mongoose = require("mongoose");
-const todosHandler = require("./routes/product");
+const todosHandler = require("./routes/todo");
+const usersHandler = require("./routes/user");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 //internal import
 const {
   notFoundHandler,
@@ -22,18 +24,19 @@ const corsOptions = {
   credentials: true,
 };
 app.use(cors(corsOptions));
-//set static path
-// app.use(express.static(path.join(__dirname, "public")));
 
 //request parses
 app.use(express.json());
 
+// parse cookies
+app.use(cookieParser(process.env.COOKIE_SECRET));
 //connection mongodb with mongoose
 connectionDB();
 
 //application route
 app.use("/todo", todosHandler);
-
+// user router
+app.use("/user", usersHandler);
 // 404 error handler
 app.use(notFoundHandler);
 

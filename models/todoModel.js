@@ -1,17 +1,13 @@
 const mongoose = require("mongoose");
 
 // create schema
-const productSchema = mongoose.Schema(
+const todoSchema = mongoose.Schema(
   {
     title: {
       type: String,
       required: true,
     },
     description: {
-      type: String,
-      required: true,
-    },
-    category: {
       type: String,
       required: true,
     },
@@ -24,6 +20,6 @@ const productSchema = mongoose.Schema(
   },
   { timestamp: true }
 );
-const Product = mongoose.model("Product", productSchema);
+const Todo = mongoose.model("Todo", todoSchema);
 
-module.exports = Product;
+module.exports = Todo;
